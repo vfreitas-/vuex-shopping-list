@@ -11,7 +11,8 @@ for (let i of Array(20).keys()) {
         image: faker.image.sports() + '/?v=' + i,
         price: faker.commerce.price(),
         category: faker.commerce.department(),
-        variation: faker.commerce.color()
+        variation: faker.commerce.color(),
+        show: true
     };
 
     categories[p.category] = false;

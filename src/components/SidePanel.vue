@@ -20,7 +20,7 @@
                                 type="checkbox"
                                 v-bind:checked="enabled"
                                 v-bind:id="$index"
-                                @change="updateFilters('categories', prop, $event.target.checked)"
+                                @change="updateFilters('categories', 'category', prop, $event.target.checked)"
                             )
                             span.mdl-checkbox__label {{ prop | capitalize }}
 </template>

@@ -21,8 +21,15 @@ const mutations = {
         state.loader = bool;
     },
 
-    [FILTER_CHANGED] (state, filter) {
-        console.log('filter changed');
+    [FILTER_CHANGED] (state, filter_field, product_field, prop, enabled) {
+        state.list = state.list.map(p => {
+            if ( p.hasOwnProperty(product_field) ) {
+                if ( p[product_field] !== prop ) {
+                    p.show = !enabled;
+                }
+            }
+            return p;
+        });
     },
 
     [SEARCH_TERM] (state, term) {

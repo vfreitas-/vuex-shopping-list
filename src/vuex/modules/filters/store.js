@@ -15,10 +15,10 @@ const state = {
 
 const mutations = {
 
-    [FILTER_CHANGED] (state, field, prop, enabled) {
-        if ( state.values.hasOwnProperty(field) ) {
-            if ( state.values[field].hasOwnProperty(prop) ) {
-                state.values[field][prop] = enabled;
+    [FILTER_CHANGED] (state, filter_field, product_field, prop, enabled) {
+        if ( state.values.hasOwnProperty(filter_field) ) {
+            if ( state.values[filter_field].hasOwnProperty(prop) ) {
+                state.values[filter_field][prop] = enabled;
             }
         }
     }
