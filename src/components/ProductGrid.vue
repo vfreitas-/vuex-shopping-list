@@ -1,9 +1,13 @@
 <template lang="jade">
-    .grid
-        product(
-            v-for="product in products"
-            v-bind:product="product"
+    div
+        .mdl-progress.mdl-js-progress.mdl-progress__indeterminate(
+            v-show="loading"
         )
+        .grid
+            product(
+                v-for="product in products"
+                v-bind:product="product"
+            )
 </template>
 
 <script>
@@ -13,13 +17,13 @@
     export default {
         data: function() {
             return {
-                loading: true,
-                products: []
+
             }
         },
         vuex: {
             getters: {
-                products: ({ products }) => products.list
+                products: ({ products }) => products.list,
+                loading: ({ products }) => products.loader
             },
             actions: {
                 getAllProducts
@@ -40,9 +44,15 @@
         justify-content: flex-start;
         flex-wrap: wrap;
         align-items: center;
+        transition: all .4s ease;
 
         position: relative;
         padding: 0 20px;
         margin: 20px auto;
+    }
+
+    .mdl-progress {
+        width: 100%;
+        margin: 5px 0;
     }
 </style>

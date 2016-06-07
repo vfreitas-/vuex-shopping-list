@@ -29,7 +29,7 @@
 
 <style lang="sass" scoped>
     .product {
-        height: 250px;
+        height: 350px;
         margin: 0 auto 20px;
 
         .mdl-card__title {

@@ -1,12 +1,14 @@
 import {
     FILTER_CHANGED,
     SEARCH_TERM,
-    RECEIVE_PRODUCTS
+    RECEIVE_PRODUCTS,
+    TOGGLE_LOADER
 } from '../../mutation-types';
 
 //initial state
 const state = {
-    list: []
+    list: [],
+    loader: true
 };
 
 const mutations = {
@@ -15,8 +17,12 @@ const mutations = {
         state.list = products;
     },
 
-    [FILTER_CHANGED] (state, filter) {
+    [TOGGLE_LOADER] (state, bool) {
+        state.loader = bool;
+    },
 
+    [FILTER_CHANGED] (state, filter) {
+        console.log('filter changed');
     },
 
     [SEARCH_TERM] (state, term) {

@@ -1,21 +1,21 @@
 import faker from 'faker/locale/en_US';
 
 let products = []
-  , categories = new Set()
-  , variations = new Set()
+  , categories = {}
+  , variations = {}
   , prices = new Set();
 
 for (let i of Array(20).keys()) {
     let p = {
         name: faker.commerce.productName(),
-        image: faker.image.food(),
+        image: faker.image.sports() + '/?v=' + i,
         price: faker.commerce.price(),
         category: faker.commerce.department(),
         variation: faker.commerce.color()
     };
 
-    categories.add(p.category);
-    variations.add(p.variation);
+    categories[p.category] = false;
+    variations[p.variation] = false;
     prices.add(p.price);
 
     products.push(p);

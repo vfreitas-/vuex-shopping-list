@@ -1,3 +1,4 @@
 export const FILTER_CHANGED = 'FILTER_CHANGED';
 export const SEARCH_TERM = 'SEARCH_TERM';
 export const RECEIVE_PRODUCTS = 'RECEIVE_PRODUCTS';
+export const TOGGLE_LOADER = 'TOGGLE_LOADER';
