@@ -26,6 +26,8 @@ const mutations = {
             if ( p.hasOwnProperty(product_field) ) {
                 if ( p[product_field] !== prop ) {
                     p.show = !enabled;
+                } else {
+                    p.show = enabled;
                 }
             }
             return p;

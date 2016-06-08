@@ -42,22 +42,31 @@
         .accordion__title {
             display: flex;
             flex-direction: row;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
             transition: all .5s $accordionTiming;
             user-select: none;
             position: relative;
             cursor: pointer;
-            min-height: 35px;
+            min-height: 45px;
             width: 100%;
             padding: 0 15px;
-            width: inherit;
             font-size: 1rem;
             font-weight: bold;
             color: inherit;
+            border-bottom: 1px solid #BBBBBB;
 
             &:after, &:before {
                 content: none;
+            }
+
+            &:after {
+                content: '';
+                width: 16px;
+                height: 16px;
+                background: url("/img/cd-icon-arrow.svg") no-repeat center center;
+                transform: rotate(-90deg);
+                transition: transform 0.3s ease;
             }
         }
 
@@ -94,7 +103,7 @@
             & + .accordion__title {
 
                 &:after {
-                    transform: rotate(90deg);
+                    transform: rotate(0deg);
                 }
             }
         }

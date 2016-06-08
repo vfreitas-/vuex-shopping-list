@@ -26,6 +26,10 @@
 </script>
 
 <style lang="sass">
+    *, *:after, *:before {
+        box-sizing: border-box;
+    }
+
     html, body {
         font-family: 'Roboto', 'Helvetica', sans-serif;
     }

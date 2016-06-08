@@ -1,5 +1,8 @@
 <template lang="jade">
-    .product.mdl-card.mdl-shadow--4dp(v-if="product.show")
+    .product.mdl-card.mdl-shadow--4dp(
+        v-if="product.show"
+        transition="animate"
+    )
         .mdl-card__title.mdl-card--expand(
             :style=" 'background-image: url(' + product.image + ');'"
         )
@@ -33,7 +36,6 @@
         margin: 0 auto 20px;
 
         transform-origin: center center;
-        animation: product-come-in .3s ease;
 
         .mdl-card__title {
             color: #fff;
@@ -43,12 +45,29 @@
         }
     }
 
-    @keyframes product-come-in {
+    .animate-enter {
+        animation: product-in .3s ease;
+    }
+
+    .animate-leave {
+        animation: product-out .3s ease;
+    }
+
+    @keyframes product-in {
         0% {
             transform: scale(0);
         }
         100% {
             transform: scale(1);
+        }
+    }
+
+    @keyframes product-out {
+        0% {
+            transform: scale(1);
+        }
+        100% {
+            transform: scale(0);
         }
     }
 </style>
