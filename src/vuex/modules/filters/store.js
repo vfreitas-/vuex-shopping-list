@@ -1,8 +1,6 @@
 import {
     FILTER_CHANGED,
-    SEARCH_TERM,
-    RECEIVE_PRODUCTS,
-    TOGGLE_LOADER
+    CLEAR_FILTERS
 } from '../../mutation-types';
 
 import ProductService from '_services/product';
