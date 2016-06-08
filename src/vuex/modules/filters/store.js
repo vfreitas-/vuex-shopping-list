@@ -21,6 +21,10 @@ const mutations = {
                 state.values[filter_field][prop] = enabled;
             }
         }
+    },
+
+    [CLEAR_FILTERS] (state) {
+        state.values = ProductService.getFilters();
     }
 
 };

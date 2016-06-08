@@ -2,6 +2,7 @@ import {
     FILTER_CHANGED,
     SEARCH_TERM,
     RECEIVE_PRODUCTS,
+    FILTER_PRODUCTS,
     TOGGLE_LOADER
 } from '../../mutation-types';
 
@@ -21,21 +22,48 @@ const mutations = {
         state.loader = bool;
     },
 
-    [FILTER_CHANGED] (state, filter_field, product_field, prop, enabled) {
+    [FILTER_PRODUCTS] (state, filters) {
+        let categories = []
+          , variations = [];
+
+        for (let obj in filters.categories) {
+            if ( filters.categories.hasOwnProperty(obj) ) {
+                if (filters.categories[obj]) categories.push(obj);
+            }
+        }
+
+        for (let obj in filters.variations) {
+            if ( filters.variations.hasOwnProperty(obj) ) {
+                if (filters.variations[obj]) variations.push(obj);
+            }
+        }
+
         state.list = state.list.map(p => {
-            if ( p.hasOwnProperty(product_field) ) {
-                if ( p[product_field] !== prop ) {
-                    p.show = !enabled;
-                } else {
-                    p.show = enabled;
-                }
+            if (categories.length === 0 && variations.length === 0) {
+                p.show = true;
+                return p;
+            }
+
+            if (
+                categories.indexOf(p.category) > -1 ||
+                variations.indexOf(p.variation) > -1
+            ) {
+                p.show = true;
+            } else {
+                p.show = false;
             }
             return p;
         });
     },
 
     [SEARCH_TERM] (state, term) {
+        state.list = state.list.map(p => {
+            // p.show = ()
+            //     ? true
+            //     : false;
 
+            return p;
+        });
     }
 };
 

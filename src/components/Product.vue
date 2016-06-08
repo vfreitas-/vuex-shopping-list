@@ -7,7 +7,7 @@
             :style=" 'background-image: url(' + product.image + ');'"
         )
             h2.mdl-card__title-text {{ product.category }}
-        .mdl-card__supporting-text {{ product.name }}
+        .mdl-card__supporting-text {{ product.name + ' - ' + product.variation }}
         .mdl-card__actions.mdl-card--border
             a.mdl-button.mdl-button--colored.mdl-js-button.mdl-js-ripple-effect Add To Cart
 </template>
