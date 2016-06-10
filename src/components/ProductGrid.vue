@@ -12,7 +12,7 @@
 
 <script>
     import Product from './Product.vue';
-    import {getAllProducts} from '_vuex/modules/products/actions';
+    import {getAllProducts} from '_vuex/actions/products';
 
     export default {
         data: function() {

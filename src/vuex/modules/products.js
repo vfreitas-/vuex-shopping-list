@@ -1,10 +1,8 @@
 import {
-    FILTER_CHANGED,
-    SEARCH_TERM,
     RECEIVE_PRODUCTS,
     FILTER_PRODUCTS,
     TOGGLE_LOADER
-} from '../../mutation-types';
+} from './../mutation-types';
 
 //initial state
 const state = {
@@ -52,13 +50,6 @@ const mutations = {
             } else {
                 p.show = false;
             }
-            return p;
-        });
-    },
-
-    [SEARCH_TERM] (state, term) {
-        state.list = state.list.map(p => {
-            p.show = p.name.toLowerCase().includes(term.toLowerCase());
             return p;
         });
     }

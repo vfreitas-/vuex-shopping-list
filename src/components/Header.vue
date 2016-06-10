@@ -7,23 +7,28 @@
                 label.mdl-button.mdl-js-button.mdl-button--icon(for="search")
                     i.material-icons search
                 .mdl-textfield__expandable-holder.mdl-color-text--white
-                    input.mdl-textfield__input(type="text" id="search")
+                    input.mdl-textfield__input(
+                        type="text"
+                        id="search"
+                        v-model="term"
+                        @keyup="searchByTerm(term) | debounce 300"
+                    )
                     label.mdl-textfield__label.mdl-color--white(for="search") Enter your query...
-            button.mdl-button.mdl-js-button.mdl-js-ripple-effect.mdl-button--icon(
-                id="hdrbtn"
-            )
-            ul.mdl-menu.mdl-js-menu.mdl-js-ripple-effect.mdl-menu--bottom-right(
-                for="hdrbtn"
-            )
-                li.mdl-menu__item About
-                li.mdl-menu__item Contact
-                li.mdl-menu__item Info
 </template>
 
 <script>
-    export default {
-        ready: function() {
+    import {searchByTerm} from '_vuex/actions/products';
 
+    export default {
+        vuex: {
+            actions: {
+                searchByTerm
+            }
+        },
+        data: function() {
+            return {
+                term: ''
+            }
         }
     }
 </script>

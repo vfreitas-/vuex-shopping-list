@@ -1,6 +1,6 @@
 import ProductService from '_services/product';
 
-import * as mutations from './../../mutation-types';
+import * as mutations from './../mutation-types';
 
 export const getAllProducts = ({ dispatch }) => {
     dispatch(mutations.TOGGLE_LOADER, true);
@@ -18,8 +18,10 @@ export const getFilteredProducts = ({ dispatch }, field, value) => {
     });
 };
 
-export const searchByTerm = ({ dispatch }, term) => {
-    ProductService.search(term).then(products => {
+export const searchByTerm = ({ dispatch, state }, term) => {
+    dispatch(mutations.TOGGLE_LOADER, true);
+    ProductService.search(term, state.products.list).then(products => {
         dispatch(mutations.RECEIVE_PRODUCTS, products);
+        dispatch(mutations.TOGGLE_LOADER, false);
     });
 };

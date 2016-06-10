@@ -1,7 +1,7 @@
 import {
     FILTER_CHANGED,
     CLEAR_FILTERS
-} from '../../mutation-types';
+} from './../mutation-types';
 
 import ProductService from '_services/product';
 

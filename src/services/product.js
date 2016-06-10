@@ -10,10 +10,13 @@ export default new class ProductService
         return this._run(mock.products);
     }
 
-    search (term) {
-        return this._run(mock.products.filter(obj => {
-            return obj.name == term || obj.category == term;
-        }));
+    search (term, list) {
+        let result = list.map(p => {
+            console.log(p.name.toLowerCase().includes(term.toLowerCase()));
+            p.show = p.name.toLowerCase().includes(term.toLowerCase());
+            return p;
+        });
+        return this._run(result);
     }
 
     filter (field, value) {
