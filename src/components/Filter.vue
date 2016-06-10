@@ -23,7 +23,7 @@
 </template>
 
 <script>
-    import {updateFilters} from '_vuex/modules/filters/actions';
+    import {updateFilters} from '_vuex/actions/filters';
 
     import Accordion from './Accordion.vue';
 
