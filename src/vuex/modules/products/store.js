@@ -58,10 +58,7 @@ const mutations = {
 
     [SEARCH_TERM] (state, term) {
         state.list = state.list.map(p => {
-            // p.show = ()
-            //     ? true
-            //     : false;
-
+            p.show = p.name.toLowerCase().includes(term.toLowerCase());
             return p;
         });
     }

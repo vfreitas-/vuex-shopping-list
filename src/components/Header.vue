@@ -5,10 +5,10 @@
             .mdl-layout-spacer
             .mdl-textfield.mdl-js-textfield.mdl-textfield--expandable
                 label.mdl-button.mdl-js-button.mdl-button--icon(for="search")
-                    i.material-icons
+                    i.material-icons search
                 .mdl-textfield__expandable-holder.mdl-color-text--white
                     input.mdl-textfield__input(type="text" id="search")
-                    label.mdl-textfield__label(for="search") Enter your query...
+                    label.mdl-textfield__label.mdl-color--white(for="search") Enter your query...
             button.mdl-button.mdl-js-button.mdl-js-ripple-effect.mdl-button--icon(
                 id="hdrbtn"
             )
