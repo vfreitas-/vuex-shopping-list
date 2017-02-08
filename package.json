@@ -14,6 +14,7 @@
     "babel-polyfill": "^6.9.1",
     "faker": "^3.1.0",
     "vue": "^1.0.24",
+    "vue-animated-list": "^1.0.2",
     "vuex": "^0.6.3"
   },
   "devDependencies": {
@@ -25,7 +26,7 @@
     "css-loader": "^0.23.1",
     "html-loader": "^0.4.3",
     "jade": "^1.11.0",
-    "node-sass": "^3.6.0",
+    "node-sass": "^4.5.0",
     "parse5": "^2.1.5",
     "path": "^0.12.7",
     "sass-loader": "^3.2.0",
@@ -34,6 +35,7 @@
     "vue-html-loader": "^1.2.0",
     "vue-loader": "^8.2.2",
     "vue-style-loader": "^1.0.0",
-    "webpack": "^1.12.14"
+    "webpack": "^1.12.14",
+    "webpack-dev-server": "^2.3.0"
   }
 }

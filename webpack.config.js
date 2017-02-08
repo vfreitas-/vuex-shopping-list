@@ -14,7 +14,6 @@ module.exports = {
     },
     devtool: 'source-map',
     resolve: {
-    // add alias for application code directory
         alias:{
             _components: path.join(base_path, 'components'),
             _services: path.join(base_path, 'services'),
@@ -22,29 +21,22 @@ module.exports = {
         }
     },
     module: {
-        // `loaders` is an array of loaders to use.
-        // here we are only configuring vue-loader
         loaders: [
             {
-                test: /\.vue$/, // a regex for matching all files that end in `.vue`
-                exclude: /node_modules|vue\/dist|vue-router\/|vue-loader\/|vue-hot-reload-api\//,
-                loader: 'vue'   // loader to use for matched files
+                test: /\.vue$/,
+                exclude: /node_modules/,
+                loader: 'vue'
             },
             {
                 test: /\.js$/,
-                exclude: /node_modules|vue\/dist|vue-router\/|vue-loader\/|vue-hot-reload-api\//,
+                exclude: /node_modules/,
                 loader: 'babel'
             }
         ],
         vue: {
-            // configure autoprefixer
             autoprefixer: {
                 browsers: ['last 4 versions', 'IE 10']
             }
         }
-    },
-    babel: {
-        presets: ['es2015'],
-        plugins: ['transform-runtime']
     }
 }
