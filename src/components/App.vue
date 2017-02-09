@@ -1,26 +1,23 @@
-<template lang="jade">
-    .mdl-layout.mdl-js-layout.mdl-layout--fixed-drawer.mdl-layout--fixed-header
-        theader
-        side-panel
-        main.mdl-layout__content.mdl-color--grey-100
-            products
-
-
+<template>
+    <div class="mdl-layout mdl-js-layout mdl-js-layout--fixed-drawer mdl-layout--fixed-header">
+        <app-header></app-header>
+        <side-panel></side-panel>
+        <main class="mdl-layout__content mdl-color--grey-100">
+            <product-grid></product-grid>
+        </main>
+    </div>
 </template>
 
 <script>
-    import Header from './Header.vue';
-    import SidePanel from './SidePanel.vue';
-    import ProductGrid from './ProductGrid.vue';
+    import AppHeader from './Header.vue'
+    import SidePanel from './SidePanel.vue'
+    import ProductGrid from './ProductGrid.vue'
 
     export default {
-        ready: function() {
-
-        },
         components: {
-            'theader': Header,
-            'side-panel': SidePanel,
-            'products': ProductGrid
+            AppHeader,
+            SidePanel,
+            ProductGrid
         }
     }
 </script>

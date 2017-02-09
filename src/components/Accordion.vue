@@ -1,14 +1,13 @@
-<template lang="jade">
-    .accordion(v-bind:style="appearence")
-        input.accordion__radio(
-            type="checkbox"
-            id="{{ id }}"
-            checked="true"
-        )
-        label.accordion__title(for="{{ id }}")
-            slot
-        .accordion__content
-            slot(name="content")
+<template>
+    <div class="accordion" :class="appearence">
+        <input :id="id" class="accordion__radio" type="checkbox" checked="true"/>
+        <label :for="id" class="accordion__title">
+            <slot></slot>
+        </label>
+        <div>
+            <slot name="content"></slot>
+        </div>
+    </div>
 </template>
 
 <script>

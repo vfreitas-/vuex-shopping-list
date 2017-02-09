@@ -2,14 +2,13 @@ const path = require( 'path' );
 
 const base_path = path.resolve(__dirname, 'src');
 
-// webpack.config.js
+
 module.exports = {
-    // entry point of our application
-    entry: ['babel-polyfill','./src/main.js'],
-    // where to place the compiled bundle
+    entry: path.join(__dirname, 'src', 'main.js'),
+
     output: {
-        path: './dist/',
-        publicPath: "./dist/",
+        path: path.join(__dirname, 'dist'),
+        publicPath: "/dist/",
         filename: 'build.js'
     },
     devtool: 'source-map',
@@ -21,22 +20,23 @@ module.exports = {
         }
     },
     module: {
-        loaders: [
+        rules: [
             {
                 test: /\.vue$/,
-                exclude: /node_modules/,
-                loader: 'vue'
+                loader: 'vue-loader',
+                options: {
+                    postcss: [
+                        require('autoprefixer')({
+                            browsers: ['last 4 versions', 'IE 10']
+                        })
+                    ]
+                }
             },
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
-                loader: 'babel'
+                loader: 'babel-loader'
             }
-        ],
-        vue: {
-            autoprefixer: {
-                browsers: ['last 4 versions', 'IE 10']
-            }
-        }
+        ]
     }
 }

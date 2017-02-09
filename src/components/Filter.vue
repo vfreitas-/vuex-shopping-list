@@ -1,31 +1,32 @@
-<template lang="jade">
-    div
-        accordion(
-            v-bind:id="filterField"
-            appearence="mdl-color-text--indigo-500"
-        )
-            h6 {{ filterField | capitalize }}
-            ul.mdl-list(slot="content")
-                li.mdl-list__item(
-                    v-for="(prop, enabled) in checkboxData"
-                )
-                    .mdl-list__item-primary-content
-                        label.mdl-checkbox.mdl-js-checkbox.mdl-js-ripple-effect(
-                            v-bind:for="filterField + '_' + $index"
-                        )
-                            input.mdl-checkbox__input(
-                                type="checkbox"
-                                v-bind:checked="enabled"
-                                v-bind:id="filterField + '_' + $index"
-                                @change="updateFilters(filterField, productField, prop, $event.target.checked)"
-                            )
-                            span.mdl-checkbox__label {{ prop | capitalize }}
+<template>
+    <div>
+        <accordion :id="filterField" appearence="mdl-color-text--indigo-500">
+            <h6>
+                {{ filterField }}
+            </h6>
+            <ul class="mdl-list">
+                <li v-for="(enabled, prop) in checkboxData" class="mdl-list__item">
+                    <div class="mdl-list__item-primary-content">
+                        <label :id="`${filterField}_${prop}`" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+                            <input @change="updateFilters(filterField, productField, prop, $event.target.checked)" 
+                                :checked="enabled" 
+                                :id="`${filterField}_${prop}`" 
+                                type="checkbox" />
+                            <span>
+                                {{ prop }}
+                            </span>
+                        </label>
+                    </div>
+                </li>
+            </ul>
+        </accordion>
+    </div>
 </template>
 
 <script>
-    import {updateFilters} from '_vuex/actions/filters';
+    import {updateFilters} from '_vuex/actions/filters'
 
-    import Accordion from './Accordion.vue';
+    import Accordion from './Accordion.vue'
 
     export default {
         props: {
@@ -42,9 +43,6 @@
             actions: {
                 updateFilters
             }
-        },
-        ready: function() {
-            console.log(this.filterField);
         },
         components: {
             accordion: Accordion
