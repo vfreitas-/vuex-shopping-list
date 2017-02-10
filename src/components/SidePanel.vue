@@ -1,29 +1,28 @@
-<template lang="jade">
-    .mdl-layout__drawer.mdl-color--white
-        header.mdl-color--pink-500.mdl-color-text--white
-            .title.mdl-color--pink-500
-                h5 Filters
-        filter(
-            filter-field="categories"
-            product-field="category"
-            v-bind:checkbox-data="filters.categories"
-            type="checkbox"
-        )
-        filter(
-            filter-field="variations"
-            product-field="variation"
-            v-bind:checkbox-data="filters.variations"
-            type="checkbox"
-        )
+<template>
+    <div class="mdl-layout__drawer mdl-color--white">
+        <header class="mdl-color--pink-500 mdl-color-text--white">
+            <div class="title mdl-color--pink-500">
+                <h5>Filters</h5>
+            </div>
+        </header>
+        <filter filter-field="categories" product-field="category" 
+            :checkbox-data="filters.categories" 
+            type="checkbox">
+        </filter>
+        <filter filter-field="variations" product-field="variation" 
+            :checkbox-data="filters.variations"
+            type="checkbox">
+        </filter>
+    </div>
 </template>
 
 <script>
-    import Filter from './Filter.vue';
+    import Filter from './Filter.vue'
 
     export default {
-        vuex: {
-            getters: {
-                filters: ({ filters }) => filters.values
+        computed: {
+            filters () {
+                return this.$store.state.filters.values
             }
         },
         components: {

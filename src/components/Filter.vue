@@ -24,8 +24,6 @@
 </template>
 
 <script>
-    import {updateFilters} from '_vuex/actions/filters'
-
     import Accordion from './Accordion.vue'
 
     export default {
@@ -39,9 +37,9 @@
                 default: 'checkbox'
             }
         },
-        vuex: {
-            actions: {
-                updateFilters
+        methods: {
+            updateFilters () {
+                return this.$store.dispatch('updateFilters')
             }
         },
         components: {

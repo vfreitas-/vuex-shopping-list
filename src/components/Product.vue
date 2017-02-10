@@ -1,31 +1,31 @@
-<template lang="jade">
-    .product.mdl-card.mdl-shadow--4dp(
-        v-if="product.show"
-        transition="animate"
-    )
-        .mdl-card__title.mdl-card--expand(
-            :style=" 'background-image: url(' + product.image + ');'"
-        )
-            h2.mdl-card__title-text {{ product.category }}
-        .mdl-card__supporting-text {{ product.name + ' - ' + product.variation }}
-        .mdl-card__actions.mdl-card--border
-            a.mdl-button.mdl-button--colored.mdl-js-button.mdl-js-ripple-effect Add To Cart
+<template>
+    <div>
+        <div v-if="product.show" class="product mdl-card mdl-shadow--4dp">
+            <div class="mdl-card__title mdl-card--expand"
+            :style="{backgroundImage: `url(${product.image})`}">
+                <h2 class="mdl-card__title-text">
+                    {{ product.category }}
+                </h2>    
+            </div>
+            <div class="mdl-card__supporting-text">
+                {{ `${product.name} - ${product.variation}` }}
+            </div>
+            <div class="mdl-card__actions mdl-card--border">
+                <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                    Add To Cart
+                </a>
+            </div>
+        </div>
+    </div>
 </template>
 
 <script>
-
     export default {
         props: {
             product: {
                 required: true,
                 type: Object
             }
-        },
-        ready: function() {
-
-        },
-        components: {
-
         }
     }
 </script>
@@ -49,7 +49,7 @@
         animation: product-in .3s ease;
     }
 
-    .animate-leave {
+    .animate-leave-active {
         animation: product-out .3s ease;
     }
 

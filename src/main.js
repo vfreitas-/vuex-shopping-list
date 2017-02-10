@@ -1,12 +1,8 @@
-import Vue from 'vue';
-import VueAnimatedList from 'vue-animated-list';
+import Vue from 'vue'
 
-Vue.use(VueAnimatedList);
+import App from './components/App.vue'
+import store from './vuex/store'
 
-import App from './components/App.vue';
-import store from './vuex/store';
-
-Vue.config.debug = true;
 
 new Vue({
     el: 'body',
@@ -14,4 +10,4 @@ new Vue({
     components: {
         app: App
     }
-});
+})

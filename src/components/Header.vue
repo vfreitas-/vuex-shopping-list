@@ -1,28 +1,32 @@
-<template lang="jade">
-    header.mdl-layout__header.mdl-color--indigo-500.mdl-color-text--white
-        .mdl-layout__header-row
-            span.mdl-layout-title Home
-            .mdl-layout-spacer
-            .mdl-textfield.mdl-js-textfield.mdl-textfield--expandable
-                label.mdl-button.mdl-js-button.mdl-button--icon(for="search")
-                    i.material-icons search
-                .mdl-textfield__expandable-holder.mdl-color-text--white
-                    input.mdl-textfield__input(
+<template>
+    <header class="mdl-layout__header mdl-color--indigo-500 mdl-color-text--white">
+        <div class="mdl-layout__header-row">
+            <span class="mdl-layout-title">Home</span>
+            <div class="mdl-layout-spacer"></div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
+                <label class="mdl-button mdl-js-button mdl-button--icon" for="search">
+                    <i class="material-icons">search</i>
+                </label>
+                <div class="mdl-textfield__expandable-holder mdl-color-text--white">
+                    <input class="mdl-textfield__input"
                         type="text"
                         id="search"
                         v-model="term"
-                        @keyup="searchByTerm(term) | debounce 300"
-                    )
-                    label.mdl-textfield__label.mdl-color--white(for="search") Enter your query...
+                        @keyup="searchByTerm(term)"/>
+                    <label class="mdl-textfield__label mdl-color--white" for="search">
+                        Enter your query...
+                    </label>
+                </div>
+            </div>
+        </div>
+    </header>
 </template>
 
 <script>
-    import {searchByTerm} from '_vuex/actions/products';
-
     export default {
-        vuex: {
-            actions: {
-                searchByTerm
+        methods: {
+            searchByTerm () {
+                return this.$store.dispatch('searchByTerm')
             }
         },
         data: function() {

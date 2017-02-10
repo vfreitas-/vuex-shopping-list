@@ -1,39 +1,34 @@
-<template lang="jade">
-    div
-        .mdl-progress.mdl-js-progress.mdl-progress__indeterminate(
-            v-show="loading"
-        )
-        .grid
-            product(
-                v-for="product in products"
-                v-bind:product="product"
-            )
+<template>
+    <div>
+        <div v-show="loading" class="mdl-progress mdl-js-progress mdl-progress__indeterminate"></div>
+        <div class="grid">
+            <product v-for="product in products" :product="product"></product>
+        </div>
+    </div>
 </template>
 
 <script>
-    import Product from './Product.vue';
-    import {getAllProducts} from '_vuex/actions/products';
+    import Product from './Product.vue'
 
     export default {
-        data: function() {
-            return {
-
-            }
-        },
-        vuex: {
-            getters: {
-                products: ({ products }) => products.list,
-                loading: ({ products }) => products.loader
+        computed: {
+            products () {
+                return this.$store.state.products.list
             },
-            actions: {
-                getAllProducts
+            loading () {
+                return this.$store.state.products.loader
             }
         },
-        ready: function() {
-            this.getAllProducts();
+        methods: {
+            getAllProducts () {
+                this.$store.dispatch('getAllProducts')
+            }
+        },
+        mounted () {
+            this.getAllProducts()
         },
         components: {
-            'product': Product
+            Product
         }
     }
 </script>
