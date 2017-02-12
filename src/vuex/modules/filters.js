@@ -24,9 +24,9 @@ export default {
         }
     },
     actions: {
-        updateFilters ({ dispatch, state }, filter_field, product_field, prop, enabled) {
-            dispatch(mutations.FILTER_CHANGED, filter_field, product_field, prop, enabled)
-            dispatch(mutations.FILTER_PRODUCTS, state.filters.values)
+        updateFilters ({ commit, state }, filter_field, product_field, prop, enabled) {
+            commit(mutations.FILTER_CHANGED, filter_field, product_field, prop, enabled)
+            commit(mutations.FILTER_PRODUCTS, state.filters.values)
         }
     }
 }

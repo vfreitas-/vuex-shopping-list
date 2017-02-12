@@ -4,6 +4,8 @@ import {
     TOGGLE_LOADER
 } from './../mutation-types'
 
+import ProductService from '_services/product'
+
 export default {
     state: {
         list: [],
@@ -53,27 +55,27 @@ export default {
         }
     },
     actions: {
-        getAllProducts ({ dispatch }) {
-            dispatch(mutations.TOGGLE_LOADER, true)
+        getAllProducts (context) {
+            context.commit(TOGGLE_LOADER, true)
             ProductService.all().then(products => {
-                dispatch(mutations.RECEIVE_PRODUCTS, products)
-                dispatch(mutations.TOGGLE_LOADER, false)
+                context.commit(RECEIVE_PRODUCTS, products)
+                context.commit(TOGGLE_LOADER, false)
             })
         },
 
-        getFilteredProducts ({ dispatch }, field, value) {
-            dispatch(mutations.TOGGLE_LOADER, true)
+        getFilteredProducts (context, field, value) {
+            context.commit(TOGGLE_LOADER, true)
             ProductService.filter(field, value).then(products => {
-                dispatch(mutations.RECEIVE_PRODUCTS, products)
-                dispatch(mutations.TOGGLE_LOADER, false)
+                context.commit(RECEIVE_PRODUCTS, products)
+                context.commit(TOGGLE_LOADER, false)
             })
         },
 
-        searchByTerm ({ dispatch, state }, term) {
-            dispatch(mutations.TOGGLE_LOADER, true)
-            ProductService.search(term, state.products.list).then(products => {
-                dispatch(mutations.RECEIVE_PRODUCTS, products)
-                dispatch(mutations.TOGGLE_LOADER, false)
+        searchByTerm (context, term) {
+            context.commit(TOGGLE_LOADER, true)
+            ProductService.search(term, context.state.products.list).then(products => {
+                context.commit(RECEIVE_PRODUCTS, products)
+                context.commit(TOGGLE_LOADER, false)
             })
         }
     }

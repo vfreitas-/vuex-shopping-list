@@ -11,6 +11,7 @@
     import Product from './Product.vue'
 
     export default {
+        name: 'ProductGrid',
         computed: {
             products () {
                 return this.$store.state.products.list

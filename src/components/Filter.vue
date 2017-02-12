@@ -7,15 +7,12 @@
             <ul class="mdl-list">
                 <li v-for="(enabled, prop) in checkboxData" class="mdl-list__item">
                     <div class="mdl-list__item-primary-content">
-                        <label :id="`${filterField}_${prop}`" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
-                            <input @change="updateFilters(filterField, productField, prop, $event.target.checked)" 
-                                :checked="enabled" 
-                                :id="`${filterField}_${prop}`" 
-                                type="checkbox" />
-                            <span>
-                                {{ prop }}
-                            </span>
-                        </label>
+                        <md-checkbox :id="`${filterField}_${prop}`"
+                        class="md-primary"
+                        @change="updateFilters(filterField, productField, prop, $event.target.checked)"
+                        name="categories" >
+                            {{ prop }}
+                        </md-checkbox>
                     </div>
                 </li>
             </ul>
@@ -27,6 +24,7 @@
     import Accordion from './Accordion.vue'
 
     export default {
+        name: 'Filter',
         props: {
             filterField: String,
             productField: String,

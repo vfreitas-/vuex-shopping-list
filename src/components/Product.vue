@@ -1,26 +1,31 @@
 <template>
-    <div>
-        <div v-if="product.show" class="product mdl-card mdl-shadow--4dp">
-            <div class="mdl-card__title mdl-card--expand"
-            :style="{backgroundImage: `url(${product.image})`}">
-                <h2 class="mdl-card__title-text">
-                    {{ product.category }}
-                </h2>    
+    <md-card class="product">
+        <md-card-media>
+            <img :src="product.image">
+        </md-card-media>
+
+        <md-card-header>
+            <div class="md-title">
+                {{ product.name }}
             </div>
-            <div class="mdl-card__supporting-text">
-                {{ `${product.name} - ${product.variation}` }}
+            <div class="md-subhead">
+                {{ product.variation }}
             </div>
-            <div class="mdl-card__actions mdl-card--border">
-                <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-                    Add To Cart
-                </a>
-            </div>
-        </div>
-    </div>
+        </md-card-header>
+
+        <md-card-content>
+            {{ product.category }}
+        </md-card-content>
+
+        <md-card-actions>
+            <md-button>Add To Cart</md-button>
+        </md-card-actions>
+    </md-card>
 </template>
 
 <script>
     export default {
+        name: 'Product',
         props: {
             product: {
                 required: true,
@@ -32,17 +37,10 @@
 
 <style lang="sass" scoped>
     .product {
-        height: 350px;
+        width: 300px;
         margin: 0 auto 20px;
 
         transform-origin: center center;
-
-        .mdl-card__title {
-            color: #fff;
-            background-position: bottom right;
-            background-size: cover;
-            background-repeat: no-repeat;
-        }
     }
 
     .animate-enter {

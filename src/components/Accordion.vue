@@ -12,6 +12,7 @@
 
 <script>
     export default {
+        name: 'Accorion',
         props: {
             id: {
                 required: true

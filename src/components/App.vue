@@ -14,6 +14,7 @@
     import ProductGrid from './ProductGrid.vue'
 
     export default {
+        name: 'App',
         components: {
             AppHeader,
             SidePanel,
