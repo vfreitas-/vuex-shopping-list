@@ -1,10 +1,16 @@
 <template>
     <md-toolbar>
-        <md-button class="md-icon-button" @click.native="toggleLeftSidenav">
+        <md-button class="md-icon-button" @click.native="toggleSidebar">
             <md-icon>menu</md-icon>
         </md-button>
 
-        <h2 class="md-title">Home</h2>
+        <span style="flex: 1"></span>
+
+        <md-input-container>
+            <md-input v-model="term"></md-input>
+            <md-icon>search</md-icon>
+        </md-input-container>
+        
     </md-toolbar>
 </template>
 
@@ -12,6 +18,9 @@
     export default {
         name: 'Header',
         methods: {
+            toggleSidebar () {
+                return this.$store.dispatch('toggle', 'sidebar')
+            },
             searchByTerm () {
                 return this.$store.dispatch('searchByTerm')
             }
@@ -25,11 +34,21 @@
 </script>
 
 <style lang="sass" scoped>
-    .mdl-textfield {
-        padding: 0px;
-        margin-top: 41px;
-    }
-    .mdl-textfield .mdl-textfield__expandable-holder {
-        bottom: 19px;
+    .md-theme-default {
+        .md-toolbar {
+            padding: 0 15px;
+        }
+        
+        .md-input-container {
+            width: 150px;
+
+            & {
+                .md-icon {
+                    &:not(.md-icon-delete):after {
+                        background: none;
+                    }
+                }
+            }
+        }
     }
 </style>

@@ -1,11 +1,9 @@
 <template>
     <div>
         <accordion :id="filterField" appearence="mdl-color-text--indigo-500">
-            <h6>
-                {{ filterField }}
-            </h6>
-            <ul class="mdl-list">
-                <li v-for="(enabled, prop) in checkboxData" class="mdl-list__item">
+            {{ filterField }}
+            <md-list slot="content">
+                <md-list-item v-for="(enabled, prop) in checkboxData">
                     <div class="mdl-list__item-primary-content">
                         <md-checkbox :id="`${filterField}_${prop}`"
                         class="md-primary"
@@ -14,8 +12,8 @@
                             {{ prop }}
                         </md-checkbox>
                     </div>
-                </li>
-            </ul>
+                </md-list-item>
+            </md-list>
         </accordion>
     </div>
 </template>

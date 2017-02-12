@@ -4,7 +4,7 @@
         <label :for="id" class="accordion__title">
             <slot></slot>
         </label>
-        <div>
+        <div class="accordion__content">
             <slot name="content"></slot>
         </div>
     </div>
@@ -12,7 +12,7 @@
 
 <script>
     export default {
-        name: 'Accorion',
+        name: 'Accordion',
         props: {
             id: {
                 required: true
@@ -51,7 +51,8 @@
             min-height: 45px;
             width: 100%;
             padding: 0 15px;
-            font-size: 1rem;
+            font-size: 1.2rem;
+            text-transform: capitalize;
             font-weight: bold;
             color: inherit;
             border-bottom: 1px solid #BBBBBB;

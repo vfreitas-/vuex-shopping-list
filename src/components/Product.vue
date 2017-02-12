@@ -37,6 +37,7 @@
 
 <style lang="sass" scoped>
     .product {
+        min-height: 440px;
         width: 300px;
         margin: 0 auto 20px;
 

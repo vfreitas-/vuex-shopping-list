@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <div v-show="loading" class="mdl-progress mdl-js-progress mdl-progress__indeterminate"></div>
+    <div style="padding-top: 10px;">
+        <md-progress v-show="loading" md-indeterminate></md-progress>
         <div class="grid">
             <product v-for="product in products" :product="product"></product>
         </div>
