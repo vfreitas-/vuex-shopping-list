@@ -7,8 +7,7 @@
                     <div class="mdl-list__item-primary-content">
                         <md-checkbox :id="`${filterField}_${prop}`"
                         class="md-primary"
-                        @change="updateFilters(filterField, productField, prop, $event.target.checked)"
-                        name="categories" >
+                        @change.native="updateFilters(filterField, productField, prop, $event.target.checked)">
                             {{ prop }}
                         </md-checkbox>
                     </div>
@@ -34,8 +33,9 @@
             }
         },
         methods: {
-            updateFilters () {
-                return this.$store.dispatch('updateFilters')
+            updateFilters (filterField, productField, prop, value) {
+                console.log(filterField, productField, prop, value)
+                return this.$store.dispatch('updateFilters', filterField, productField, prop, value)
             }
         },
         components: {

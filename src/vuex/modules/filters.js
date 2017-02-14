@@ -1,6 +1,7 @@
 import {
     FILTER_CHANGED,
-    CLEAR_FILTERS
+    CLEAR_FILTERS,
+    FILTER_PRODUCTS
 } from './../mutation-types'
 
 import ProductService from '_services/product'
@@ -25,8 +26,9 @@ export default {
     },
     actions: {
         updateFilters ({ commit, state }, filter_field, product_field, prop, enabled) {
-            commit(mutations.FILTER_CHANGED, filter_field, product_field, prop, enabled)
-            commit(mutations.FILTER_PRODUCTS, state.filters.values)
+            // console.log(filter_field, product_field, prop, enabled)
+            commit(FILTER_CHANGED, filter_field, product_field, prop, enabled)
+            commit(FILTER_PRODUCTS, state.values)
         }
     }
 }
