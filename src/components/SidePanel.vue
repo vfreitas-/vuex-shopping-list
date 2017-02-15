@@ -6,11 +6,11 @@
             </div>
         </md-toolbar>
 
-        <app-filter filter-field="categories" product-field="category" 
+        <app-filter filter-field="categories"
             :checkbox-data="filters.categories" 
             type="checkbox">
         </app-filter>
-        <app-filter filter-field="variations" product-field="variation" 
+        <app-filter filter-field="variations"
             :checkbox-data="filters.variations"
             type="checkbox">
         </app-filter>

@@ -44,31 +44,6 @@
         margin: 0 5px 20px;
 
         transform-origin: center center;
-    }
-
-    .animate-enter {
-        animation: product-in .3s ease;
-    }
-
-    .animate-leave-active {
-        animation: product-out .3s ease;
-    }
-
-    @keyframes product-in {
-        0% {
-            transform: scale(0);
-        }
-        100% {
-            transform: scale(1);
-        }
-    }
-
-    @keyframes product-out {
-        0% {
-            transform: scale(1);
-        }
-        100% {
-            transform: scale(0);
-        }
+        transition: all .5s;
     }
 </style>

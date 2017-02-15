@@ -9,11 +9,16 @@ import ProductService from '_services/product'
 export default {
     state: {
         list: [],
+        filtered: [],
         loader: true
     },
     mutations: {
         [RECEIVE_PRODUCTS] (state, products) {
-            state.list = products
+            state.filtered = products
+
+            if (state.list.length == 0) {
+                state.list = products
+            }
         },
 
         [TOGGLE_LOADER] (state, bool) {
@@ -36,21 +41,21 @@ export default {
                 }
             }
 
-            state.list = state.list.map(p => {
+
+
+            state.filtered = state.list.filter(p => {
                 if (categories.length === 0 && variations.length === 0) {
-                    p.show = true
-                    return p
+                    return true
                 }
 
                 if (
                     categories.indexOf(p.category) > -1 ||
                     variations.indexOf(p.variation) > -1
                 ) {
-                    p.show = true
+                    return true
                 } else {
-                    p.show = false
+                    return false
                 }
-                return p
             })
         }
     },

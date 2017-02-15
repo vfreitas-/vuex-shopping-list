@@ -12,8 +12,7 @@ export default {
         term: null    
     },
     mutations: {
-        [FILTER_CHANGED] (state, {filterField, productField, prop, enabled}) {
-            console.log(filterField, productField, prop, enabled)
+        [FILTER_CHANGED] (state, {filterField, prop, enabled}) {
             if ( state.values.hasOwnProperty(filterField) ) {
                 if ( state.values[filterField].hasOwnProperty(prop) ) {
                     state.values[filterField][prop] = enabled
