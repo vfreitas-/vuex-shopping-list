@@ -3,6 +3,7 @@
         <md-button class="md-icon-button" @click.native="toggleSidebar">
             <md-icon>menu</md-icon>
         </md-button>
+        <h3>Filter</h3>
 
         <span style="flex: 1"></span>
 

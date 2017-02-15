@@ -33,9 +33,11 @@
             }
         },
         methods: {
-            updateFilters (filterField, productField, prop, value) {
-                console.log(filterField, productField, prop, value)
-                return this.$store.dispatch('updateFilters', filterField, productField, prop, value)
+            updateFilters (filterField, productField, prop, enabled) {
+                console.log(filterField, productField, prop, enabled)
+                return this.$store.dispatch('updateFilters', {
+                    filterField, productField, prop, enabled
+                })
             }
         },
         components: {

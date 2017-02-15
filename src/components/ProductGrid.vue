@@ -37,7 +37,7 @@
 <style lang="sass" scoped>
     .grid {
         display: flex;
-        justify-content: flex-start;
+        justify-content: space-around;
         flex-wrap: wrap;
         align-items: center;
         transition: all .4s ease;

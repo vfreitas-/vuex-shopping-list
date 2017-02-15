@@ -12,10 +12,11 @@ export default {
         term: null    
     },
     mutations: {
-        [FILTER_CHANGED] (state, filter_field, product_field, prop, enabled) {
-            if ( state.values.hasOwnProperty(filter_field) ) {
-                if ( state.values[filter_field].hasOwnProperty(prop) ) {
-                    state.values[filter_field][prop] = enabled
+        [FILTER_CHANGED] (state, {filterField, productField, prop, enabled}) {
+            console.log(filterField, productField, prop, enabled)
+            if ( state.values.hasOwnProperty(filterField) ) {
+                if ( state.values[filterField].hasOwnProperty(prop) ) {
+                    state.values[filterField][prop] = enabled
                 }
             }
         },
@@ -25,9 +26,8 @@ export default {
         }
     },
     actions: {
-        updateFilters ({ commit, state }, filter_field, product_field, prop, enabled) {
-            // console.log(filter_field, product_field, prop, enabled)
-            commit(FILTER_CHANGED, filter_field, product_field, prop, enabled)
+        updateFilters ({ commit, state }, data) {
+            commit(FILTER_CHANGED, data)
             commit(FILTER_PRODUCTS, state.values)
         }
     }
