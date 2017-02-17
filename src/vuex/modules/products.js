@@ -78,7 +78,7 @@ export default {
 
         searchByTerm (context, term) {
             context.commit(TOGGLE_LOADER, true)
-            ProductService.search(term, context.state.products.list).then(products => {
+            ProductService.search(term, context.state.list).then(products => {
                 context.commit(RECEIVE_PRODUCTS, products)
                 context.commit(TOGGLE_LOADER, false)
             })

@@ -43,15 +43,10 @@
     }
 </script>
 
-<style lang="sass" scoped>
-    header {
-        margin-bottom: 10px;
-    }
-
-    .title {
-        height: 64px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+<style lang="sass">
+    .md-sidenav.md-theme-default {
+        .md-sidenav-backdrop {
+            background-color: rgba(0, 0, 0, 0.19);
+        }
     }
 </style>

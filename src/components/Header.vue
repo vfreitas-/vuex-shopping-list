@@ -8,7 +8,7 @@
         <span style="flex: 1"></span>
 
         <md-input-container>
-            <md-input v-model="term"></md-input>
+            <md-input v-model="term" @change="searchByTerm"></md-input>
             <md-icon>search</md-icon>
         </md-input-container>
         
@@ -18,17 +18,17 @@
 <script>
     export default {
         name: 'Header',
+        data () {
+            return {
+                term: ''
+            }
+        },
         methods: {
             toggleSidebar () {
                 return this.$store.dispatch('toggle', 'sidebar')
             },
             searchByTerm () {
-                return this.$store.dispatch('searchByTerm')
-            }
-        },
-        data: function() {
-            return {
-                term: ''
+                return this.$store.dispatch('searchByTerm', this.term)
             }
         }
     }

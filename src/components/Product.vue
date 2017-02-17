@@ -1,5 +1,5 @@
 <template>
-    <div v-show="product.show">
+    <div>
         <md-card class="product">
             <md-card-media>
                 <img :src="product.image">
