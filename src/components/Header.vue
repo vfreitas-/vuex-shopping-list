@@ -1,9 +1,10 @@
 <template>
     <md-toolbar>
-        <md-button class="md-icon-button" @click.native="toggleSidebar">
+        <md-button @click.native="toggleSidebar">
             <md-icon>menu</md-icon>
         </md-button>
-        <h3>Filter</h3>
+
+        <h1 class="md-title">Filter</h1>
 
         <span style="flex: 1"></span>
 
@@ -16,6 +17,8 @@
 </template>
 
 <script>
+    import {debounce} from '../util'
+
     export default {
         name: 'Header',
         data () {
@@ -28,7 +31,9 @@
                 return this.$store.dispatch('toggle', 'sidebar')
             },
             searchByTerm () {
-                return this.$store.dispatch('searchByTerm', this.term)
+                debounce(() => {
+                    this.$store.dispatch('searchByTerm', this.term)
+                }, 300)()
             }
         }
     }

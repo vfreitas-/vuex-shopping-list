@@ -1,0 +1,120 @@
+<template>
+    <div class="shopping-cart" :class="{'shopping-cart--active': isActive}">
+        <div class="shopping-cart__icon" data-count="2">
+            <md-icon v-if="!isActive" @click.native="isActive = true" class="md-primary md-size-2x">
+                add_shopping_cart
+            </md-icon>
+            <md-icon v-else @click.native="isActive = false" class="md-primary md-size-2x">
+                close
+            </md-icon>
+        </div>
+        <div class="shopping-cart__wrapper">
+            <div class="shopping-cart__content cart-content">
+                <div class="cart-content__header">
+                    <!-- Shopping Bag -->
+                </div>
+                <div class="cart-content__list">
+                    <cart-list></cart-list>
+                </div>
+                <div class="cart-content__footer">
+                    <!--Total: $25.60-->
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script>
+    import CartList from './CartList.vue'
+
+    export default {
+        name: 'Cart',
+        data () {
+            return {
+                isActive: false
+            }
+        },
+        components: {
+            CartList
+        }
+    }
+</script>
+
+<style lang="sass">
+    .shopping-cart {
+        &__icon {
+            z-index: 10;
+
+            height: 72px;
+            width: 72px;
+            border-radius: 6px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.27);
+
+            display: flex;
+
+            cursor: pointer;
+            background: #ffffff;
+
+            user-select: none;
+
+            &:after {
+                content: attr(data-count);
+
+                position: absolute;
+                top: -5px;
+                right: -5px;
+                height: 25px;
+                width: 25px;
+
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                border-radius: 50%;
+                background-color: #3f51b5;
+                color: white;
+                font-weight: bold;
+            }
+        }
+
+        &__wrapper {
+            z-index: 9;
+            width: 90%;
+            max-width: 450px;
+            height: 400px;
+            max-height: 90%;
+            pointer-events: none;
+        }
+
+        &__icon, &__wrapper {
+            position: fixed;
+            bottom: 20px;
+            right: 2vw;
+        }
+
+        &__content {
+            z-index: 8;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            height: 72px;
+            width: 72px;
+            overflow: hidden;
+            border-radius: 6px;
+            background: #ffffff;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.27);
+
+            transition: height .4s, width .4s;
+            transition-timing-function: cubic-bezier(0.67, 0.17, 0.32, 0.95);
+            pointer-events: auto;
+
+        }
+
+        &--active {
+            .shopping-cart__content {
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
+</style>

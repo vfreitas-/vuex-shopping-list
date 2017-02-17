@@ -1,10 +1,11 @@
 <template>
-    <div class="mdl-layout mdl-js-layout mdl-js-layout--fixed-drawer mdl-layout--fixed-header">
+    <div>
         <app-header></app-header>
         <side-panel></side-panel>
         <main class="mdl-layout__content mdl-color--grey-100">
             <product-grid></product-grid>
         </main>
+        <cart></cart>
     </div>
 </template>
 
@@ -12,13 +13,15 @@
     import AppHeader from './Header.vue'
     import SidePanel from './SidePanel.vue'
     import ProductGrid from './ProductGrid.vue'
+    import Cart from './Cart.vue'
 
     export default {
         name: 'App',
         components: {
             AppHeader,
             SidePanel,
-            ProductGrid
+            ProductGrid,
+            Cart
         }
     }
 </script>
