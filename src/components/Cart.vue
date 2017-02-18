@@ -1,23 +1,25 @@
 <template>
     <div class="shopping-cart" :class="{'shopping-cart--active': isActive}">
-        <div class="shopping-cart__icon" data-count="2">
-            <md-icon v-if="!isActive" @click.native="isActive = true" class="md-primary md-size-2x">
+        <div class="shopping-cart__icon" data-count="2" @click="isActive = !isActive">
+            <md-icon v-if="!isActive" class="md-primary md-size-2x">
                 add_shopping_cart
             </md-icon>
-            <md-icon v-else @click.native="isActive = false" class="md-primary md-size-2x">
+            <md-icon v-else class="md-primary md-size-2x">
                 close
             </md-icon>
         </div>
         <div class="shopping-cart__wrapper">
             <div class="shopping-cart__content cart-content">
                 <div class="cart-content__header">
-                    <!-- Shopping Bag -->
+                    <md-toolbar>
+                        <h2 class="md-title">Shopping Cart</h2>
+                    </md-toolbar>
                 </div>
                 <div class="cart-content__list">
                     <cart-list></cart-list>
                 </div>
                 <div class="cart-content__footer">
-                    <!--Total: $25.60-->
+                    <p class="cart-content__footer__text">Total: $25.60</p>
                 </div>
             </div>
         </div>
@@ -94,27 +96,67 @@
 
         &__content {
             z-index: 8;
-            position: absolute;
-            bottom: 0;
-            right: 0;
             height: 72px;
             width: 72px;
-            overflow: hidden;
-            border-radius: 6px;
-            background: #ffffff;
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.27);
 
-            transition: height .4s, width .4s;
-            transition-timing-function: cubic-bezier(0.67, 0.17, 0.32, 0.95);
-            pointer-events: auto;
-
+            & .md-title, .cart-content__footer__text {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
         }
 
         &--active {
             .shopping-cart__content {
                 width: 100%;
                 height: 100%;
+
+                & .md-title, .cart-content__footer__text {
+                    transition: opacity .3s, transform .3s .3s;
+                    opacity: 1;
+                    transform: translateY(0);
+                }
             }
+        }
+    }
+
+    .cart-content {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        overflow: hidden;
+        border-radius: 6px;
+        background: #ffffff;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.27);
+
+        transition: height .4s, width .4s;
+        transition-timing-function: cubic-bezier(0.67, 0.17, 0.32, 0.95);
+        pointer-events: auto;
+
+        display: flex;
+        flex-direction: column;
+
+        &__header {
+            flex: 0 0 65px;
+        }
+
+        &__list {
+            display: flex;
+
+            flex: 1;
+        }
+
+        &__footer {
+            flex: 0 0 72px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            padding: 15px;
+            background-color: #3F51B5;
+            font-size: 1.3rem;
+            color: white;
         }
     }
 </style>
