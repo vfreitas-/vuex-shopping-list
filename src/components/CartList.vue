@@ -1,13 +1,31 @@
 <template>
-
+    <div class="cart-list">
+        <template v-for="product in products">
+            <cart-item :item="product"></cart-item>
+        </template>
+    </div>
 </template>
 
 <script>
+    import CartItem from './CartItem.vue'
+
     export default {
-        name: 'CartList'
+        name: 'CartList',
+        props: {
+            products: {
+                required: true,
+                type: Array
+            }
+        },
+        components: {
+            CartItem
+        }
     }
 </script>
 
-<style lang="sass">
-
+<style lang="sass" scoped>
+    .cart-list {
+        height: 100%;
+        overflow: auto;
+    }
 </style>

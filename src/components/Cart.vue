@@ -1,12 +1,14 @@
 <template>
     <div class="shopping-cart" :class="{'shopping-cart--active': isActive}">
-        <div class="shopping-cart__icon" data-count="2" @click="isActive = !isActive">
-            <md-icon v-if="!isActive" class="md-primary md-size-2x">
-                add_shopping_cart
-            </md-icon>
-            <md-icon v-else class="md-primary md-size-2x">
-                close
-            </md-icon>
+        <div class="shopping-cart__icon" :data-count="count" @click="isActive = !isActive">
+            <transition name="fade" mode="out-in">
+                <md-icon v-if="!isActive" class="md-primary md-size-2x" key="cart">
+                    add_shopping_cart
+                </md-icon>
+                <md-icon v-else class="md-primary md-size-2x" key="close">
+                    close
+                </md-icon>
+            </transition>
         </div>
         <div class="shopping-cart__wrapper">
             <div class="shopping-cart__content cart-content">
@@ -16,10 +18,10 @@
                     </md-toolbar>
                 </div>
                 <div class="cart-content__list">
-                    <cart-list></cart-list>
+                    <cart-list :products="products"></cart-list>
                 </div>
                 <div class="cart-content__footer">
-                    <p class="cart-content__footer__text">Total: $25.60</p>
+                    <p class="cart-content__footer__text">Total: ${{ total.toFixed(2) }}</p>
                 </div>
             </div>
         </div>
@@ -27,6 +29,7 @@
 </template>
 
 <script>
+    import { mapState } from 'vuex'
     import CartList from './CartList.vue'
 
     export default {
@@ -35,6 +38,13 @@
             return {
                 isActive: false
             }
+        },
+        computed: {
+            ...mapState({
+                products: ({ cart }) => cart.products,
+                total: ({ cart }) => cart.total,
+                count: ({ cart }) => cart.count
+            })
         },
         components: {
             CartList
@@ -142,7 +152,6 @@
 
         &__list {
             display: flex;
-
             flex: 1;
         }
 

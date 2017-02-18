@@ -34,4 +34,12 @@
     html, body {
         font-family: 'Roboto', 'Helvetica', sans-serif;
     }
+
+    .fade-enter-active, .fade-leave-active {
+        transition: all .2s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+    }
+
+    .fade-enter, .fade-leave-to {
+        opacity: 0;
+    }
 </style>

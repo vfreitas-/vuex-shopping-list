@@ -19,13 +19,15 @@
             </md-card-content>
 
             <md-card-actions>
-                <md-button>Add To Cart</md-button>
+                <md-button @click.native="addProduct(product)">Add To Cart</md-button>
             </md-card-actions>
         </md-card>
     </div>
 </template>
 
 <script>
+    import { mapActions } from 'vuex'
+
     export default {
         name: 'Product',
         props: {
@@ -33,6 +35,11 @@
                 required: true,
                 type: Object
             }
+        },
+        methods: {
+            ...mapActions([
+                'addProduct'
+            ])
         }
     }
 </script>

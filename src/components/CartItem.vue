@@ -4,7 +4,13 @@
 
 <script>
     export default {
-        name: 'CartItem'
+        name: 'CartItem',
+        props: {
+            products: {
+                required: true,
+                type: Array
+            }
+        }
     }
 </script>
 
