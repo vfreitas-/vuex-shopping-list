@@ -14,14 +14,14 @@
             <div class="shopping-cart__content cart-content">
                 <div class="cart-content__header">
                     <md-toolbar>
-                        <h2 class="md-title">Shopping Cart</h2>
+                        <h2 class="md-title">Shopping Bag</h2>
                     </md-toolbar>
                 </div>
                 <div class="cart-content__list">
                     <cart-list :products="products"></cart-list>
                 </div>
                 <div class="cart-content__footer">
-                    <p class="cart-content__footer__text">Total: ${{ total.toFixed(2) }}</p>
+                    <p class="cart-content__footer__text">Total: ${{ total | currency }}</p>
                 </div>
             </div>
         </div>
@@ -112,7 +112,7 @@
 
             & .md-title, .cart-content__footer__text {
                 opacity: 0;
-                transform: translateY(-20px);
+                transform: translateX(40px);
             }
         }
 
@@ -124,7 +124,7 @@
                 & .md-title, .cart-content__footer__text {
                     transition: opacity .3s, transform .3s .3s;
                     opacity: 1;
-                    transform: translateY(0);
+                    transform: translateX(0);
                 }
             }
         }

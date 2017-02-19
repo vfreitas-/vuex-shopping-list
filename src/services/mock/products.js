@@ -10,7 +10,8 @@ for (let i of Array(20).keys()) {
         id: i + 1,
         name: faker.commerce.productName(),
         image: faker.image.sports() + '/?v=' + i,
-        price: faker.commerce.price(),
+        // image: faker.image.image(),
+        price: parseFloat(faker.commerce.price()),
         category: faker.commerce.department(),
         variation: faker.commerce.color(),
         show: true

@@ -2,6 +2,7 @@
     <div class="cart-list">
         <template v-for="product in products">
             <cart-item :item="product"></cart-item>
+            <div class="cart-list__divider"></div>
         </template>
     </div>
 </template>
@@ -27,5 +28,11 @@
     .cart-list {
         height: 100%;
         overflow: auto;
+
+        &__divider {
+            height: 1px;
+            width: 100%;
+            background-color: rgba(0,0,0,.12);
+        }
     }
 </style>

@@ -13,14 +13,14 @@ export default {
     mutations: {
         [ADD_PRODUCT] (state, product) {
             state.products.push(product)
-            state.total += parseFloat(product.price)
+            state.total += product.price
             state.count += 1
         },
 
         [REMOVE_PRODUCT] (state, id) {
             state.products = state.products.filter(p => p.id !== id)
             state.total = state.products.reduce((a, b) => a + b.price, 0)
-            state.count = products.length + 1
+            state.count = state.products.length
         }
     },
     actions: {
