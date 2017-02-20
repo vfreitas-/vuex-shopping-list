@@ -25,6 +25,10 @@
                 </div>
             </div>
         </div>
+        <md-snackbar md-position="bottom center" ref="snackbar" md-duration="3000">
+            <span>Product added to the cart!</span>
+            <md-button class="md-accent" @click.native="$refs.snackbar.close()">Close</md-button>
+        </md-snackbar>
     </div>
 </template>
 
@@ -147,7 +151,7 @@
         flex-direction: column;
 
         &__header {
-            flex: 0 0 65px;
+            flex: 0 0 45px;
         }
 
         &__list {

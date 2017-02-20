@@ -5,9 +5,10 @@
         </div>
         <div class="cart-item__content">
             <span>{{ item.name }}</span>
+            <span>Quantity: <b>{{ item.quantity }}</b></span>
         </div>
         <div class="cart-item__price">
-            {{ '$' + item.price.toFixed(2) }}
+            {{ `$${item.price.toFixed(2)}` }}
         </div>
         <div class="cart-item__remove">
             <md-icon @click.native="removeProduct(item.id)" class="md-primary md-size-1x">
