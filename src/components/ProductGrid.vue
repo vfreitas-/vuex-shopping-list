@@ -1,39 +1,35 @@
-<template lang="jade">
-    div
-        .mdl-progress.mdl-js-progress.mdl-progress__indeterminate(
-            v-show="loading"
-        )
-        .grid
-            product(
-                v-for="product in products"
-                v-bind:product="product"
-            )
+<template>
+    <div style="padding-top: 10px;">
+        <md-progress v-show="loading" md-indeterminate></md-progress>
+        <transition-group name="scale" tag="div" class="grid">
+            <product v-for="product in products" :product="product" :key="product.id"></product>
+        </transition-group>
+    </div>
 </template>
 
 <script>
-    import Product from './Product.vue';
-    import {getAllProducts} from '_vuex/actions/products';
+    import Product from './Product.vue'
 
     export default {
-        data: function() {
-            return {
-
-            }
-        },
-        vuex: {
-            getters: {
-                products: ({ products }) => products.list,
-                loading: ({ products }) => products.loader
+        name: 'ProductGrid',
+        computed: {
+            products () {
+                return this.$store.state.products.filtered
             },
-            actions: {
-                getAllProducts
+            loading () {
+                return this.$store.state.products.loader
             }
         },
-        ready: function() {
-            this.getAllProducts();
+        methods: {
+            getAllProducts () {
+                this.$store.dispatch('getAllProducts')
+            }
+        },
+        mounted () {
+            this.getAllProducts()
         },
         components: {
-            'product': Product
+            Product
         }
     }
 </script>
@@ -41,7 +37,7 @@
 <style lang="sass" scoped>
     .grid {
         display: flex;
-        justify-content: flex-start;
+        justify-content: space-around;
         flex-wrap: wrap;
         align-items: center;
         transition: all .4s ease;
@@ -51,8 +47,12 @@
         margin: 20px auto;
     }
 
-    .mdl-progress {
-        width: 100%;
-        margin: 5px 0;
+    .scale-move, .scale-enter-active, .scale-leave-active {
+        transition: transform 0.5s;
+        transform-origin: center center;
+    }
+
+    .scale-enter, .scale-leave-to {
+        transform: scale(0);
     }
 </style>

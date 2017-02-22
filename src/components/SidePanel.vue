@@ -1,46 +1,52 @@
-<template lang="jade">
-    .mdl-layout__drawer.mdl-color--white
-        header.mdl-color--pink-500.mdl-color-text--white
-            .title.mdl-color--pink-500
-                h5 Filters
-        filter(
-            filter-field="categories"
-            product-field="category"
-            v-bind:checkbox-data="filters.categories"
-            type="checkbox"
-        )
-        filter(
-            filter-field="variations"
-            product-field="variation"
-            v-bind:checkbox-data="filters.variations"
-            type="checkbox"
-        )
+<template>
+    <md-sidenav class="md-left" ref="sidebar">
+        <md-toolbar class="md-dense">
+            <div class="md-toolbar-container">
+                <h3 class="md-title">Filters</h3>
+            </div>
+        </md-toolbar>
+
+        <app-filter filter-field="categories"
+            :checkbox-data="filters.categories" 
+            type="checkbox">
+        </app-filter>
+        <app-filter filter-field="variations"
+            :checkbox-data="filters.variations"
+            type="checkbox">
+        </app-filter>
+    </md-sidenav>
 </template>
 
 <script>
-    import Filter from './Filter.vue';
+    import AppFilter from './Filter.vue'
 
     export default {
-        vuex: {
-            getters: {
-                filters: ({ filters }) => filters.values
+        name: 'SidePanel',
+        computed: {
+            isActive () {
+                return this.$store.state.toggle.sidebar
+            },
+            filters () {
+                return this.$store.state.filters.values
+            }
+        },
+        watch: {
+            isActive (val, oldVal) {
+                if (val !== oldVal) {
+                    this.$refs.sidebar.toggle()
+                }
             }
         },
         components: {
-            filter: Filter
+            AppFilter
         }
     }
 </script>
 
-<style lang="sass" scoped>
-    header {
-        margin-bottom: 10px;
-    }
-
-    .title {
-        height: 64px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+<style lang="sass">
+    .md-sidenav.md-theme-default {
+        .md-sidenav-backdrop {
+            background-color: rgba(0, 0, 0, 0.19);
+        }
     }
 </style>

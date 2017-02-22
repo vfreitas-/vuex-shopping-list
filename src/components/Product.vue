@@ -1,73 +1,56 @@
-<template lang="jade">
-    .product.mdl-card.mdl-shadow--4dp(
-        v-if="product.show"
-        transition="animate"
-    )
-        .mdl-card__title.mdl-card--expand(
-            :style=" 'background-image: url(' + product.image + ');'"
-        )
-            h2.mdl-card__title-text {{ product.category }}
-        .mdl-card__supporting-text {{ product.name + ' - ' + product.variation }}
-        .mdl-card__actions.mdl-card--border
-            a.mdl-button.mdl-button--colored.mdl-js-button.mdl-js-ripple-effect Add To Cart
+<template>
+    <div>
+        <md-card class="product">
+            <md-card-media>
+                <img :src="product.image">
+            </md-card-media>
+
+            <md-card-header>
+                <div class="md-title">
+                    {{ product.name }}
+                </div>
+                <div class="md-subhead">
+                    {{ product.variation }}
+                </div>
+            </md-card-header>
+
+            <md-card-content>
+                {{ product.category }}
+            </md-card-content>
+
+            <md-card-actions>
+                <md-button @click.native="addProduct(product)">Add To Cart</md-button>
+            </md-card-actions>
+        </md-card>
+    </div>
 </template>
 
 <script>
+    import { mapActions } from 'vuex'
 
     export default {
+        name: 'Product',
         props: {
             product: {
                 required: true,
                 type: Object
             }
         },
-        ready: function() {
-
-        },
-        components: {
-
+        methods: {
+            ...mapActions([
+                'addProduct'
+            ])
         }
     }
 </script>
 
 <style lang="sass" scoped>
     .product {
-        height: 350px;
-        margin: 0 auto 20px;
+        min-height: 440px;
+        width: 300px;
+        margin: 0 5px 20px;
 
         transform-origin: center center;
-
-        .mdl-card__title {
-            color: #fff;
-            background-position: bottom right;
-            background-size: cover;
-            background-repeat: no-repeat;
-        }
-    }
-
-    .animate-enter {
-        animation: product-in .3s ease;
-    }
-
-    .animate-leave {
-        animation: product-out .3s ease;
-    }
-
-    @keyframes product-in {
-        0% {
-            transform: scale(0);
-        }
-        100% {
-            transform: scale(1);
-        }
-    }
-
-    @keyframes product-out {
-        0% {
-            transform: scale(1);
-        }
-        100% {
-            transform: scale(0);
-        }
+        transition: all .5s;
     }
 </style>

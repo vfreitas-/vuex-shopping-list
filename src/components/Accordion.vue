@@ -1,18 +1,18 @@
-<template lang="jade">
-    .accordion(v-bind:style="appearence")
-        input.accordion__radio(
-            type="checkbox"
-            id="{{ id }}"
-            checked="true"
-        )
-        label.accordion__title(for="{{ id }}")
-            slot
-        .accordion__content
-            slot(name="content")
+<template>
+    <div class="accordion" :class="appearence">
+        <input :id="id" class="accordion__radio" type="checkbox" checked="true"/>
+        <label :for="id" class="accordion__title">
+            <slot></slot>
+        </label>
+        <div class="accordion__content">
+            <slot name="content"></slot>
+        </div>
+    </div>
 </template>
 
 <script>
     export default {
+        name: 'Accordion',
         props: {
             id: {
                 required: true
@@ -51,7 +51,8 @@
             min-height: 45px;
             width: 100%;
             padding: 0 15px;
-            font-size: 1rem;
+            font-size: 1.2rem;
+            text-transform: capitalize;
             font-weight: bold;
             color: inherit;
             border-bottom: 1px solid #BBBBBB;

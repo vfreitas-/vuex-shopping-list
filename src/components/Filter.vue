@@ -1,33 +1,27 @@
-<template lang="jade">
-    div
-        accordion(
-            v-bind:id="filterField"
-            appearence="mdl-color-text--indigo-500"
-        )
-            h6 {{ filterField | capitalize }}
-            ul.mdl-list(slot="content")
-                li.mdl-list__item(
-                    v-for="(prop, enabled) in checkboxData"
-                )
-                    .mdl-list__item-primary-content
-                        label.mdl-checkbox.mdl-js-checkbox.mdl-js-ripple-effect(
-                            v-bind:for="filterField + '_' + $index"
-                        )
-                            input.mdl-checkbox__input(
-                                type="checkbox"
-                                v-bind:checked="enabled"
-                                v-bind:id="filterField + '_' + $index"
-                                @change="updateFilters(filterField, productField, prop, $event.target.checked)"
-                            )
-                            span.mdl-checkbox__label {{ prop | capitalize }}
+<template>
+    <div>
+        <accordion :id="filterField" appearence="mdl-color-text--indigo-500">
+            {{ filterField }}
+            <md-list slot="content">
+                <md-list-item v-for="(enabled, prop) in checkboxData">
+                    <div class="mdl-list__item-primary-content">
+                        <md-checkbox :id="`${filterField}_${prop}`"
+                        class="md-primary"
+                        @change.native="updateFilters(filterField, prop, $event.target.checked)">
+                            {{ prop }}
+                        </md-checkbox>
+                    </div>
+                </md-list-item>
+            </md-list>
+        </accordion>
+    </div>
 </template>
 
 <script>
-    import {updateFilters} from '_vuex/actions/filters';
-
-    import Accordion from './Accordion.vue';
+    import Accordion from './Accordion.vue'
 
     export default {
+        name: 'Filter',
         props: {
             filterField: String,
             productField: String,
@@ -38,16 +32,15 @@
                 default: 'checkbox'
             }
         },
-        vuex: {
-            actions: {
-                updateFilters
+        methods: {
+            updateFilters (filterField, prop, enabled) {
+                return this.$store.dispatch('updateFilters', {
+                    filterField, prop, enabled
+                })
             }
         },
-        ready: function() {
-            console.log(this.filterField);
-        },
         components: {
-            accordion: Accordion
+            Accordion
         }
     }
 </script>
