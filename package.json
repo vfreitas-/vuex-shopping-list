@@ -4,9 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "concurrently \"npm run dev\"  \"npm run build\"",
-    "dev": "webpack-dev-server --inline --hot",
-    "build": "webpack --watch"
+    "start": "webpack-dev-server --inline --hot",
+    "build": "webpack -p"
   },
   "author": "Vitor Freitas",
   "license": "MIT",
