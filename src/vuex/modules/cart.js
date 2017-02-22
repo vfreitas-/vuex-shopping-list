@@ -4,6 +4,8 @@ import {
 
 } from './../mutation-types'
 
+import Vue from 'vue'
+
 export default {
     state: {
         products: [],
@@ -12,18 +14,18 @@ export default {
     },
     mutations: {
         [ADD_PRODUCT] (state, product) {
-            let index = state.products.findIndex(p => p.id === product.id)
+            let productExist = state.products.find(p => p.id === product.id)
 
-            if (index >= 0) {
+            if (productExist) {
                 state.products = state.products.map(p => {
                     if (p.id === product.id) {
-                        p.quantity = p.quantity + 1    
+                        p.quantity += 1
                     }
 
                     return p
                 })
             } else {
-                product.quantity = 1
+                Vue.set(product, 'quantity', 1)
                 state.products.push(product)
             }
 
